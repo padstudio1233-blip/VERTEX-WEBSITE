@@ -1,1 +1,283 @@
 
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#09090d">
+  <meta name="description" content="VERTEX Bot - 디스코드 커뮤니티 관리의 새로운 기준">
+  <title>VERTEX Bot | Official Website</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: #09090d;
+      color: #f5f3fa;
+      font-family: Arial, "Noto Sans KR", sans-serif;
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    .container { width: min(1120px, 90%); margin: auto; }
+    header {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(9,9,13,.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid #25232d;
+    }
+    nav {
+      min-height: 76px; display: flex;
+      align-items: center; justify-content: space-between;
+    }
+    .logo { font-size: 23px; font-weight: 900; letter-spacing: 2px; }
+    .logo span { color: #a78bfa; }
+    .nav-links { display: flex; gap: 28px; color: #c5c0d0; font-size: 14px; }
+    .nav-links a:hover { color: #b69aff; }
+    .menu-btn {
+      display: none; background: none; border: 1px solid #51406f;
+      color: white; border-radius: 8px; padding: 8px 12px; cursor: pointer;
+    }
+    .hero {
+      min-height: 650px; display: grid; place-items: center;
+      text-align: center; position: relative; overflow: hidden;
+      background:
+        radial-gradient(ellipse at 50% 45%, rgba(113,70,190,.22), transparent 55%),
+        linear-gradient(135deg,#0b0b11,#11101a 55%,#09090d);
+    }
+    .hero::before {
+      content: ""; position: absolute; inset: 0;
+      background-image: linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+      background-size: 45px 45px;
+      mask-image: linear-gradient(to bottom,black,transparent);
+    }
+    .hero-content { position: relative; padding: 90px 0; }
+    .eyebrow {
+      display: inline-block; border: 1px solid #59427f;
+      background: #241934; color: #c4a7ff;
+      padding: 7px 15px; border-radius: 30px;
+      font-size: 12px; letter-spacing: 2px; margin-bottom: 25px;
+    }
+    h1 { font-size: clamp(48px,9vw,92px); line-height: 1.05; letter-spacing: -4px; }
+    h1 span { color: #ad8aff; }
+    .hero p { color: #aaa4b7; margin: 25px auto 32px; max-width: 590px; }
+    .actions { display: flex; justify-content: center; gap: 13px; flex-wrap: wrap; }
+    .btn {
+      display: inline-block; padding: 13px 23px; border-radius: 9px;
+      font-weight: 700; transition: .2s; border: 1px solid #59427f;
+    }
+    .btn-primary { background: #8155d9; border-color: #8155d9; color: white; }
+    .btn:hover { transform: translateY(-3px); filter: brightness(1.15); }
+    section { padding: 95px 0; }
+    .section-head { text-align: center; margin-bottom: 45px; }
+    .section-head small { color: #aa88f2; letter-spacing: 3px; font-weight: bold; }
+    .section-head h2 { font-size: clamp(30px,5vw,43px); margin: 10px 0; }
+    .section-head p { color: #9993a6; }
+    .grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+    .card {
+      background: linear-gradient(145deg,#17151f,#101016);
+      border: 1px solid #292533; border-radius: 15px;
+      padding: 27px; transition: .25s;
+    }
+    .card:hover { border-color: #7956b9; transform: translateY(-5px); }
+    .card .symbol { font-size: 28px; margin-bottom: 16px; }
+    .card h3 { margin-bottom: 9px; }
+    .card p { color: #a49eaf; font-size: 14px; }
+    .product { border-color: #59427f; }
+    .product .tag { color: #c2a4ff; font-size: 11px; letter-spacing: 2px; }
+    .product h3 { font-size: 27px; margin: 9px 0; }
+    .product ul { color: #b5afc0; padding-left: 19px; margin: 18px 0; font-size: 14px; }
+    .server-box {
+      text-align: center; padding: 55px 25px;
+      border: 1px solid #49356a; border-radius: 20px;
+      background: radial-gradient(ellipse at top,#2b1b43,#111018 70%);
+    }
+    .server-box h2 { font-size: clamp(27px,5vw,42px); margin: 12px 0; }
+    .server-box p { color: #b4adbf; margin-bottom: 25px; }
+    footer { border-top: 1px solid #292533; padding: 30px 0; color: #827c8e; font-size: 13px; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 15px; flex-wrap: wrap; }
+    @media(max-width:750px) {
+      .menu-btn { display: block; }
+      .nav-links {
+        display: none; position: absolute; top: 76px; left: 0; right: 0;
+        background: #111018; padding: 22px 5%;
+        flex-direction: column; gap: 18px; border-bottom: 1px solid #292533;
+      }
+      .nav-links.open { display: flex; }
+      .grid { grid-template-columns: 1fr; }
+      h1 { letter-spacing: -2px; }
+      section { padding: 70px 0; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="container">
+      <a class="logo" href="#">VERTEX<span>.</span></a>
+      <button class="menu-btn" id="menuBtn" aria-label="메뉴 열기">MENU</button>
+      <div class="nav-links" id="navLinks">
+        <a href="#home">HOME</a>
+        <a href="#about">ABOUT</a>
+        <a href="#products">PRODUCTS</a>
+        <a href="#features">FEATURES</a>
+        <a href="#community">DISCORD</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-content">
+        <span class="eyebrow">OFFICIAL DISCORD BOT PLATFORM</span>
+        <h1>YOUR SERVER.<br><span>YOUR CONTROL.</span></h1>
+        <p>디스코드 커뮤니티 관리의 새로운 기준.<br>
+        서버 운영에 필요한 다양한 기능을 VERTEX와 함께 경험하세요.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#products">서비스 알아보기</a>
+          <a class="btn" href="#community">공식 서버 참여</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-head">
+          <small>ABOUT VERTEX</small>
+          <h2>커뮤니티 운영을 하나로</h2>
+          <p>효율적이고 편리한 디스코드 서버 관리 환경을 제공합니다.</p>
+        </div>
+        <div class="grid">
+          <article class="card">
+            <div class="symbol">⚙️</div>
+            <h3>효율적인 관리</h3>
+            <p>반복되는 서버 관리 업무를 간편하게 처리할 수 있도록 지원합니다.</p>
+          </article>
+          <article class="card">
+            <div class="symbol">🛡️</div>
+            <h3>체계적인 운영</h3>
+            <p>경고 및 멤버 관리 기능으로 서버 운영을 지원합니다.</p>
+          </article>
+          <article class="card">
+            <div class="symbol">✨</div>
+            <h3>지속적인 발전</h3>
+            <p>다양한 커뮤니티 환경을 고려하여 서비스를 발전시킵니다.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="products">
+      <div class="container">
+        <div class="section-head">
+          <small>OUR PRODUCTS</small>
+          <h2>VERTEX 서비스</h2>
+          <p>목적에 맞는 VERTEX 서비스를 확인하세요.</p>
+        </div>
+        <div class="grid">
+          <article class="card product">
+            <span class="tag">STANDARD</span>
+            <h3>VERTEX Bot</h3>
+            <p>디스코드 커뮤니티 운영을 위한 기본 서비스입니다.</p>
+            <ul>
+              <li>경고 관리</li>
+              <li>공지 시스템</li>
+              <li>서버 정보</li>
+              <li>타임아웃 관리</li>
+            </ul>
+            <a class="btn btn-primary" href="#community">자세히 알아보기</a>
+          </article>
+          <article class="card product">
+            <span class="tag">PREMIUM</span>
+            <h3>VERTEX Premium</h3>
+            <p>프리미엄 전용 기능과 확장된 서비스 안내를 제공합니다.</p>
+            <ul>
+              <li>프리미엄 전용 기능 안내</li>
+              <li>확장 서비스 안내</li>
+              <li>프리미엄 지원 안내</li>
+            </ul>
+            <a class="btn" href="#community">프리미엄 안내</a>
+          </article>
+          <article class="card">
+            <span class="tag">COMMUNITY</span>
+            <h3>VERTEX Discord</h3>
+            <p>공지, 문의, 업데이트 소식을 확인할 수 있는 공식 커뮤니티입니다.</p>
+            <ul>
+              <li>서비스 공지</li>
+              <li>업데이트 소식</li>
+              <li>문의 및 지원</li>
+            </ul>
+            <a class="btn" href="#community">커뮤니티 안내</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="features">
+      <div class="container">
+        <div class="section-head">
+          <small>MAIN FEATURES</small>
+          <h2>주요 기능</h2>
+          <p>서버 운영에 필요한 핵심 기능을 한곳에서 확인하세요.</p>
+        </div>
+        <div class="grid">
+          <article class="card"><div class="symbol">⚠️</div><h3>경고 관리</h3><p>경고 부여, 차감 및 목록 확인 기능을 제공합니다.</p></article>
+          <article class="card"><div class="symbol">📢</div><h3>공지 시스템</h3><p>서버 공지와 주요 안내를 전달할 수 있습니다.</p></article>
+          <article class="card"><div class="symbol">👥</div><h3>서버 정보</h3><p>서버 관련 정보를 확인할 수 있습니다.</p></article>
+          <article class="card"><div class="symbol">⏱️</div><h3>타임아웃</h3><p>설정된 권한에 따라 멤버 관리 기능을 이용할 수 있습니다.</p></article>
+          <article class="card"><div class="symbol">🔧</div><h3>관리 편의성</h3><p>슬래시 명령어 기반으로 기능을 이용할 수 있도록 설계합니다.</p></article>
+          <article class="card"><div class="symbol">🌐</div><h3>커뮤니티 지원</h3><p>다양한 서버 운영 환경을 고려합니다.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="community">
+      <div class="container">
+        <div class="server-box">
+          <span class="eyebrow">VERTEX OFFICIAL COMMUNITY</span>
+          <h2>JOIN THE VERTEX COMMUNITY</h2>
+          <p>공식 디스코드 서버에서 공지와 업데이트, 지원 정보를 확인하세요.</p>
+          <div class="actions">
+            <a class="btn btn-primary" href="#" id="discordLink">공식 디스코드 참여</a>
+            <a class="btn" href="mailto:">문의하기</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>© 2026 VERTEX Bot. All rights reserved.</span>
+      <span>OFFICIAL VERTEX WEBSITE</span>
+    </div>
+  </footer>
+
+  <script>
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
+
+    menuBtn.addEventListener("click", () => {
+      navLinks.classList.toggle("open");
+    });
+
+    navLinks.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => navLinks.classList.remove("open"));
+    });
+
+    // 공식 디스코드 초대 링크가 준비되면 아래 주소를 교체하세요.
+    const discordInvite = "";
+    const discordLink = document.getElementById("discordLink");
+
+    if (discordInvite) {
+      discordLink.href = discordInvite;
+      discordLink.target = "_blank";
+      discordLink.rel = "noopener noreferrer";
+    } else {
+      discordLink.addEventListener("click", event => {
+        event.preventDefault();
+        alert("공식 디스코드 초대 링크가 아직 등록되지 않았습니다.");
+      });
+    }
+  </script>
+</body>
+</html>
